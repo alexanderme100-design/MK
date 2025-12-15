@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遙控器借用事件：現況困境與改善建議對照表</title>
+    <style>
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 { color: #2c3e50; text-align: center; margin-bottom: 10px; }
+        .subtitle { color: #555; text-align: center; margin-bottom: 30px; font-size: 1.1em; max-width: 800px;}
+        
+        .section-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: auto;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-header {
+            font-size: 1.4em;
+            font-weight: bold;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .bad-header { color: #c0392b; border-color: #fadbd8; }
+        .good-header { color: #27ae60; border-color: #d5f5e3; }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            color: white;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .badge-bad { background-color: #c0392b; }
+        .badge-good { background-color: #27ae60; }
+
+        .transition-arrow {
+            font-size: 2em;
+            color: #7f8c8d;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* SVG 共用樣式 */
+        svg { font-family: 'Microsoft JhengHei', sans-serif; width: 100%; height: auto; display: block; }
+        .node-rect { fill: #fff; stroke-width: 2px; rx: 8; ry: 8; filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.1)); }
+        .node-text { font-size: 14px; font-weight: bold; text-anchor: middle; dominant-baseline: middle; }
+        .node-subtext { font-size: 11px; fill: #666; text-anchor: middle; dominant-baseline: middle; }
+        
+        /* 顏色定義 */
+        .color-red { stroke: #e74c3c; fill: #e74c3c; }
+        .color-blue { stroke: #3498db; fill: #3498db; }
+        .color-green { stroke: #2ecc71; fill: #2ecc71; }
+        
+        .bg-red { fill: #fff5f5; stroke: #ffcccc; }
+        .bg-blue { fill: #f0f9ff; stroke: #b3e5fc; }
+        .bg-yellow { fill: #fffde7; stroke: #fff9c4; }
+        .bg-gray { fill: #f5f5f5; stroke: #e0e0e0; }
+        .bg-green { fill: #e8f5e9; stroke: #66bb6a; }
+
+        .path-line { fill: none; stroke-width: 2.5px; stroke-linecap: round; }
+        .label-bg { fill: white; opacity: 0.95; }
+        .path-label { font-size: 12px; font-weight: bold; text-anchor: middle; }
+        .red-text { fill: #c0392b; }
+        .green-text { fill: #27ae60; }
+        .blue-text { fill: #2980b9; }
+
+    </style>
+</head>
+<body>
+
+    <h1>行政流程改善分析報告</h1>
+    <div class="subtitle">
+        透過對比圖，分析「遙控器借用」事件中的行政效能差異。<br>
+        建議將例行性事務制度化，減少無效溝通，讓各處室回歸專業職掌。
+    </div>
+
+    <!-- 1. 現況困境區塊 -->
+    <div class="section-container">
+        <div class="section-header bad-header">
+            1. 現況困境：無效溝通與職責錯置
+            <span class="badge badge-bad">Pain Points</span>
+        </div>
+        <div style="color: #666; margin-bottom: 15px; font-size: 0.9em;">
+            <strong>問題點：</strong>簡單的借用需求被複雜化。總務處不願直接決策，導致學務主任被迫成為「傳話筒」，甚至需驚動校長處理瑣事。
+        </div>
+
+        <svg viewBox="0 0 800 520">
+            <defs>
+                <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" /></marker>
+                <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#3498db" /></marker>
+                <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#999" /></marker>
+            </defs>
+
+            <!-- 紅色區域框 -->
+            <rect x="230" y="140" width="340" height="350" rx="15" fill="none" stroke="#ffcccc" stroke-width="2" stroke-dasharray="5,5" />
+            <text x="560" y="480" font-size="12" fill="#e74c3c" text-anchor="end">無效行政迴圈 (紅線)</text>
+
+            <!-- 路徑 -->
+            <!-- 1. Lan -> GA -->
+            <path d="M150 60 L290 60" class="path-line" stroke="#999" marker-end="url(#arrow-gray)" />
+            <text x="220" y="50" class="path-label" fill="#666">1. 申請借用</text>
+
+            <!-- 2. GA -> Tsai (RED) -->
+            <path d="M360 90 L360 190" class="path-line color-red" marker-end="url(#arrow-red)" />
+            <rect x="290" y="130" width="140" height="20" class="label-bg" />
+            <text x="360" y="145" class="path-label red-text">2. 拒絕處理，推給主任</text>
+
+            <!-- 3. Tsai -> Principal (RED) -->
+            <path d="M360 250 L360 360" class="path-line color-red" marker-end="url(#arrow-red)" />
+            <text x="360" y="305" class="path-label red-text">3. 被迫請示</text>
+
+            <!-- 4. Principal -> GA (RED Loop) -->
+            <path d="M420 390 C 520 390, 520 60, 420 60" class="path-line color-red" fill="none" marker-end="url(#arrow-red)" />
+            <rect x="475" y="225" width="60" height="20" class="label-bg" />
+            <text x="505" y="240" class="path-label red-text">4. 同意</text>
+            
+            <!-- 反制措施 (Blue) -->
+            <path d="M300 220 L150 220" class="path-line color-blue" marker-end="url(#arrow-blue)" />
+            <text x="225" y="210" class="path-label blue-text">您的反制：拒絕傳話</text>
+
+            <path d="M90 190 Q 90 100 290 70" class="path-line color-blue" fill="none" marker-end="url(#arrow-blue)" />
+            <text x="160" y="120" class="path-label blue-text">老闆直接對口</text>
+
+            <!-- 節點 -->
+            <!-- GA -->
+            <rect x="300" y="30" width="120" height="60" class="node-rect bg-gray" />
+            <text x="360" y="50" class="node-text">總務處</text>
+            <text x="360" y="70" class="node-subtext">(資源控管)</text>
+
+            <!-- Lan -->
+            <rect x="30" y="30" width="120" height="60" class="node-rect bg-blue" />
+            <text x="90" y="50" class="node-text">午餐秘書 小蘭</text>
+            <text x="90" y="70" class="node-subtext">(需求方)</text>
+
+            <!-- Tsai -->
+            <rect x="300" y="190" width="120" height="60" class="node-rect bg-red" stroke="#ff0000" stroke-width="2.5" />
+            <text x="360" y="210" class="node-text" fill="#c0392b">學務主任 (您)</text>
+            <text x="360" y="230" class="node-subtext">(被迫的中間人)</text>
+
+            <!-- Principal -->
+            <rect x="300" y="360" width="120" height="60" class="node-rect bg-yellow" />
+            <text x="360" y="380" class="node-text">校長</text>
+            <text x="360" y="400" class="node-subtext">(決策者)</text>
+
+            <!-- Boss -->
+            <rect x="30" y="190" width="120" height="60" class="node-rect" fill="#e8f5e9" stroke="#2e7d32" />
+            <text x="90" y="210" class="node-text" fill="#2e7d32">廠商老闆</text>
+
+            <!-- Kinder Comparison -->
+            <rect x="650" y="30" width="120" height="60" class="node-rect bg-blue" opacity="0.6"/>
+            <text x="710" y="50" class="node-text" fill="#666">幼兒園</text>
+            <text x="710" y="70" class="node-subtext">(可以直接借)</text>
+            <path d="M650 60 L420 60" class="path-line" stroke="#ccc" marker-end="url(#arrow-gray)" />
+        </svg>
+    </div>
+
+    <div class="transition-arrow">⬇️ 建議改革方向 ⬇️</div>
+
+    <!-- 2. 解決方案區塊 -->
+    <div class="section-container">
+        <div class="section-header good-header">
+            2. 解決方案：建立例行事務 SOP
+            <span class="badge badge-good">Efficiency</span>
+        </div>
+        <div style="color: #666; margin-bottom: 15px; font-size: 0.9em;">
+            <strong>具體作法：</strong>將「午餐廠商借用」比照「幼兒園模式」辦理，建立授權名冊。總務處依SOP直接借出，學務主任與校長不再介入瑣事。
+        </div>
+
+        <svg viewBox="0 0 800 400">
+            <defs>
+                <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2ecc71" /></marker>
+            </defs>
+
+            <!-- 核心流程 (中間橫向) -->
+            <!-- 1. Lan -> GA -->
+            <path d="M160 250 L300 250" class="path-line color-green" marker-end="url(#arrow-green)" />
+            <rect x="195" y="235" width="70" height="20" fill="white" opacity="0.9" />
+            <text x="230" y="250" class="path-label green-text" dominant-baseline="middle">1. 直接申請</text>
+
+            <!-- 2. GA Logic -->
+            <path d="M360 220 L360 160" class="path-line color-green" marker-end="url(#arrow-green)" />
+            <text x="430" y="190" class="path-label green-text" text-anchor="start">2. 查核SOP名冊</text>
+            <text x="430" y="210" font-size="11" fill="#666" text-anchor="start">(確認為合約廠商)</text>
+
+            <!-- 3. GA -> Lan -->
+            <path d="M330 280 L330 340 L100 340 L100 280" class="path-line color-green" fill="none" marker-end="url(#arrow-green)" />
+            <text x="215" y="330" class="path-label green-text">3. 依職權直接借出</text>
+
+            <!-- 旁觀者 (被解放的角色) -->
+            <!-- Tsai -->
+            <rect x="580" y="50" width="180" height="120" fill="#fff3e0" rx="10" />
+            <text x="670" y="80" class="node-text" fill="#ef6c00">學務處 (您)</text>
+            <text x="670" y="110" font-size="12" fill="#e65100" text-anchor="middle">無需介入協調</text>
+            <text x="670" y="140" font-size="20" text-anchor="middle">😊</text>
+
+            <!-- Principal -->
+            <rect x="580" y="230" width="180" height="120" fill="#fff3e0" rx="10" />
+            <text x="670" y="260" class="node-text" fill="#ef6c00">校長</text>
+            <text x="670" y="290" font-size="12" fill="#e65100" text-anchor="middle">充分授權</text>
+            <text x="670" y="320" font-size="20" text-anchor="middle">👍</text>
+
+            <!-- 阻斷線 -->
+            <line x1="500" y1="20" x2="500" y2="380" stroke="#ccc" stroke-width="2" stroke-dasharray="5,5" />
+            <text x="480" y="100" font-size="12" fill="#999" text-anchor="end" writing-mode="tb">無需再向上呈報</text>
+
+            <!-- 節點 -->
+            <!-- Lan -->
+            <rect x="40" y="220" width="120" height="60" class="node-rect bg-green" />
+            <text x="100" y="240" class="node-text">午餐秘書/廠商</text>
+            <text x="100" y="260" class="node-subtext">(例行需求方)</text>
+
+            <!-- GA -->
+            <rect x="300" y="220" width="120" height="60" class="node-rect bg-green" stroke-width="3" />
+            <text x="360" y="240" class="node-text">總務處</text>
+            <text x="360" y="260" class="node-subtext">(依SOP逕行裁決)</text>
+
+            <!-- SOP Doc -->
+            <rect x="320" y="90" width="80" height="60" fill="white" stroke="#2ecc71" stroke-width="2" rx="4" />
+            <line x1="335" y1="105" x2="385" y2="105" stroke="#2ecc71" stroke-width="2" />
+            <line x1="335" y1="120" x2="385" y2="120" stroke="#2ecc71" stroke-width="2" />
+            <line x1="335" y1="135" x2="365" y2="135" stroke="#2ecc71" stroke-width="2" />
+            <text x="360" y="80" class="node-text" fill="#2ecc71">授權名冊</text>
+        </svg>
+    </div>
+
+</body>
+</html>
